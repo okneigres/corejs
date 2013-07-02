@@ -5,5 +5,6 @@ Useful event-driven javascript library based on CORE principles
 
 
 <blockquote>
-<script>For example.</<script>
+<script src="/core.js"></<script>
+
 </blockquote>
