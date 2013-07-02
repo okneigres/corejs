@@ -3,11 +3,12 @@ core-js
 
 Useful event-driven javascript library based on CORE principles
 
-h2. Features
+Features
+--------
 
-*Event listening:*
+**Event listening:**
 
-<blockquote>
+`
 <script src="core.js"></<script>
 
 var ExampleNamespace = { };
@@ -20,12 +21,11 @@ ExampleNamespace.obj1 = {
 }
 
 Core.processNamespace(ExampleNamespace);
-
-</blockquote>
+`
 
 *Listen many events:*
 
-<blockquote>
+`
 <script src="core.js"></<script>
 
 var ExampleNamespace = { };
@@ -43,12 +43,11 @@ ExampleNamespace.obj1 = {
 }
 
 Core.processNamespace(ExampleNamespace);
-
-</blockquote>
+`
 
 *Fire event*
 
-<blockquote>
+`
 <script src="core.js"></<script>
 
 // Create namespace in special object Event
@@ -65,6 +64,4 @@ new Event.ExampleNamespace.obj1();
 new Event.ExampleNamespace.obj1({prop1: 'aaa', prop2: 'bbb'});
 
 </script>
-
-</blockquote>
-
+`
