@@ -6,6 +6,10 @@ if(typeof global.Event == 'undefined') {
     global.Event = { };
 }
 
+if(typeof global.Request == 'undefined') {
+    global.Request = { };
+}
+
 var Core = {
     __event_stack: [],
     EventPoint: function() {
@@ -31,7 +35,7 @@ var Core = {
         return event;
     },
     RequestPoint: function() {
-        this.handlers = [];
+        throw "Not ready"
     },
     processNamespace: function(namespace) {
         for(var _classname in namespace) {
