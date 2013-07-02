@@ -35,7 +35,26 @@ var Core = {
         return event;
     },
     RequestPoint: function() {
-        throw "Not ready"
+        function event(data) {
+            var i;
+            if(data) {
+                for(i in data) {
+                    this[i] = data[i];
+                }
+            }
+            for(i in event.listeners) {
+                this.name = event.listeners[i][2];
+                Core.__event_stack.unshift(this);
+                try {
+                    event.listeners[i][1].apply(event.listeners[i][0], arguments);
+                } catch (e) {
+                    console.error(e);
+                }
+                Core.__event_stack.shift(this);
+            }
+        }
+        event.listeners = [];
+        return event;
     },
     processNamespace: function(namespace) {
         for(var _classname in namespace) {
@@ -60,6 +79,21 @@ var Core = {
                                 cursor.listeners.push([_class, _class[method], events[i]])
                             } catch(e) {
                                 console.error('cannot parse ' + events[i] + ' in CatchEvent in [namespace].' + _classname + '.' + method, e);
+                            }
+                        }
+                    }
+                    if (events = _class[method].toString().replace(/\n/g,"").match(/Core\.CatchRequest\(([^\)]+)\)/m)) {
+                        events = events[1].replace(/^ *| *$/g,"").split(/ *, */);
+                        for(var i in events) {
+                            try {
+                                var parts = events[i].split('.');
+                                var cursor = global;
+                                for(var n in parts) {
+                                    cursor = cursor[parts[n]];
+                                }
+                                cursor.listeners.push([_class, _class[method], events[i]])
+                            } catch(e) {
+                                console.error('cannot parse ' + events[i] + ' in CatchRequest in [namespace].' + _classname + '.' + method, e);
                             }
                         }
                     }
