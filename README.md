@@ -8,60 +8,56 @@ Features
 
 **Event listening:**
 
-`
-<script src="core.js"></<script>
+    <script src="core.js"></script>
 
-var ExampleNamespace = { };
+    var ExampleNamespace = { };
 
-ExampleNamespace.obj1 = {
-    method1: function() {
-        Core.CatchEvent(Event.DOM.Init);
-        console.log('DOM Init catch');
-    }
-}
-
-Core.processNamespace(ExampleNamespace);
-`
-
-*Listen many events:*
-
-`
-<script src="core.js"></<script>
-
-var ExampleNamespace = { };
-
-ExampleNamespace.obj1 = {
-    method1: function() {
-        var e = Core.CatchEvent(Event.DOM.Init, Event.Window.Scroll);
-        if(e instanceof Event.DOM.Init) {
+    ExampleNamespace.obj1 = {
+        method1: function() {
+            Core.CatchEvent(Event.DOM.Init);
             console.log('DOM Init catch');
         }
-        if(e instanceof Event.Window.Scroll) {
-            console.log('Window Scroll catch');
+    }
+
+    Core.processNamespace(ExampleNamespace);
+`
+
+**Listen many events:**
+
+    <script src="core.js"></script>
+
+    var ExampleNamespace = { };
+
+    ExampleNamespace.obj1 = {
+        method1: function() {
+            var e = Core.CatchEvent(Event.DOM.Init, Event.Window.Scroll);
+            if(e instanceof Event.DOM.Init) {
+                console.log('DOM Init catch');
+            }
+            if(e instanceof Event.Window.Scroll) {
+                console.log('Window Scroll catch');
+            }
         }
     }
-}
 
-Core.processNamespace(ExampleNamespace);
-`
+    Core.processNamespace(ExampleNamespace);
 
-*Fire event*
 
-`
-<script src="core.js"></<script>
+**Fire event**
 
-// Create namespace in special object Event
-Event.ExampleNamespace = { };
+    <script src="core.js"></<script>
 
-Event.ExampleNamespace.obj1 = {
-    event1: new Core.EventPoint,
-    event2: new Core.EventPoint
-};
+    // Create namespace in special object Event
+    Event.ExampleNamespace = { };
 
-...
+    Event.ExampleNamespace.obj1 = {
+        event1: new Core.EventPoint,
+        event2: new Core.EventPoint
+    };
 
-new Event.ExampleNamespace.obj1();
-new Event.ExampleNamespace.obj1({prop1: 'aaa', prop2: 'bbb'});
+    ...
 
-</script>
-`
+    new Event.ExampleNamespace.obj1();
+    new Event.ExampleNamespace.obj1({prop1: 'aaa', prop2: 'bbb'});
+
+    </script>
